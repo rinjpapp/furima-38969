@@ -26,11 +26,11 @@
 | price              | integer    | null: false                    |
 | content            | text       | null: false                    |
 | user               | references | null: false, foreign_key: true |
-| category_id        | integer    | null: false, foreign_key: true |
-| condition_id       | integer    | null: false, foreign_key: true |
-| shipping_option_id | integer    | null: false, foreign_key: true |
-| prefecture_id      | integer    | null: false, foreign_key: true |
-| shipping_term_id   | integer    | null: false, foreign_key: true |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| shipping_option_id | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| shipping_term_id   | integer    | null: false                    |
 
 ### Association
 
@@ -55,11 +55,11 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | post_code     | string     | null: false                    |
-| prefecture_id | integer    | null: false, foreign_key: true |
-| city          | string     | null: false,                   |
-| address       | string     | null: false,                   |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
 | building_name | string     |                                |
-| phone_number  | string     | null: false,                   |
+| phone_number  | string     | null: false                    |
 | order_record  | references | null: false, foreign_key: true |
 
 ### Association
