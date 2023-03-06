@@ -11,9 +11,7 @@
 | first_name         | string     | null: false                    |
 | last_name_kana     | string     | null: false                    |
 | first_name_kana    | string     | null: false                    |
-| birth_day          | text       | null: false                    |
-| item               | references | null: false, foreign_key: true |
-| order_record_id    | references | null: false, foreign_key: true |
+| birth_day          | date       | null: false                    |
 
 ### Association
 
@@ -22,17 +20,17 @@
 
 ## items テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| title           | string     | null: false                    |
-| price           | integer    | null: false                    |
-| content         | text       | null: false                    |
-| user            | references | null: false, foreign_key: true |
-| category        | references | null: false, foreign_key: true |
-| condition       | references | null: false, foreign_key: true |
-| shipping_option | references | null: false, foreign_key: true |
-| prefecture      | references | null: false, foreign_key: true |
-| shipping_term   | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| title              | string     | null: false                    |
+| price              | integer    | null: false                    |
+| content            | text       | null: false                    |
+| user               | references | null: false, foreign_key: true |
+| category_id        | integer    | null: false, foreign_key: true |
+| condition_id       | integer    | null: false, foreign_key: true |
+| shipping_option_id | integer    | null: false, foreign_key: true |
+| prefecture_id      | integer    | null: false, foreign_key: true |
+| shipping_term_id   | integer    | null: false, foreign_key: true |
 
 ### Association
 
@@ -45,25 +43,25 @@
 | ------------- | ---------- | ------------------------------ |
 | user          | references | null: false, foreign_key: true |
 | item          | references | null: false, foreign_key: true |
-| shipping_info | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :item
-- has_one :shipping_info
+- belongs_to :item
+- has_one :address_list
 
-## shipping_info テーブル
+## address_lists テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| post_code     | integer    | null: false                    |
-| prefecture    | references | null: false, foreign_key: true |
+| post_code     | string     | null: false                    |
+| prefecture_id | integer    | null: false, foreign_key: true |
 | city          | string     | null: false,                   |
 | address       | string     | null: false,                   |
-| building_name | string     | null: false,                   |
-| phone_number  | integer    | null: false,                   |
+| building_name | string     |                                |
+| phone_number  | string     | null: false,                   |
+| order_record  | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :order_record
+- belongs_to :order_record
