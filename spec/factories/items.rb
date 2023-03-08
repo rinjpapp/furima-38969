@@ -4,7 +4,7 @@ FactoryBot.define do
       person { Gimei.name }
     end
     title { Faker::Commerce.product_name }
-    price { Faker::Number.between(from: 300, to: 9999999) }
+    price { Faker::Number.between(from: 300, to: 9_999_999) }
     content { Faker::Lorem.paragraphs }
     association :user
     category_id { Faker::Number.between(from: 2, to: 11) }
