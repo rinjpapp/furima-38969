@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: :edit
 
   def index
-    @items = Item.order("created_at DESC")
+    @items = Item.order('created_at DESC')
   end
 
   def new
@@ -36,16 +36,15 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    if current_user.id == item.user_id
-      item.destroy
-    end
-      redirect_to action: :index
+    item.destroy if current_user.id == item.user_id
+    redirect_to action: :index
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:title, :price, :content, :category_id, :condition_id, :shipping_option_id, :prefecture_id, :shipping_term_id, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:title, :price, :content, :category_id, :condition_id, :shipping_option_id, :prefecture_id,
+                                 :shipping_term_id, :image).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -53,9 +52,8 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    if current_user.id != @item.user_id
-      redirect_to action: :index
-    end
-  end
+    return unless current_user.id != @item.user_id
 
+    redirect_to action: :index
+  end
 end
