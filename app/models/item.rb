@@ -8,7 +8,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
-  has_many :order_records
+  has_one :order_record
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category

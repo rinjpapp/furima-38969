@@ -26,7 +26,7 @@ class OrderRecordsController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item[:price],
       card: order_address_params[:token],
@@ -39,8 +39,9 @@ class OrderRecordsController < ApplicationController
   end
 
   def move_to_index
-    return unless @item.order_records.present?
+    return unless current_user.id == @item.user_id || @item.order_record.present?
 
     redirect_to root_path
   end
+
 end
