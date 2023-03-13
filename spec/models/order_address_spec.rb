@@ -27,12 +27,12 @@ RSpec.describe OrderAddress, type: :model do
       it 'post_codeがハイフンがないと保存できない' do
         @order_address.post_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
+        expect(@order_address.errors.full_messages).to include('Post code が正しくありません。ハイフンを入れてください')
       end
       it 'post_codeが全角入力だと保存できない' do
         @order_address.post_code = '１２３４５６７'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
+        expect(@order_address.errors.full_messages).to include('Post code が正しくありません。ハイフンを入れてください')
       end
       # prefecture
       it 'prefecture_idが空では保存できない' do
@@ -43,7 +43,7 @@ RSpec.describe OrderAddress, type: :model do
       it '発送元の地域に「---」が選択されている場合は出品できない' do
         @order_address.prefecture_id = '1'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@order_address.errors.full_messages).to include("Prefecture を入力してください")
       end
       it 'cityが空では保存できない' do
         @order_address.city = ''

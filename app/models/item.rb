@@ -17,7 +17,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_term
 
-  with_options presence: true, numericality: { other_than: 1, message: "can't be blank" } do
+  with_options presence: true, numericality: { other_than: 1, message: "を入力してください" } do
     validates :category_id
     validates :condition_id
     validates :shipping_option_id
